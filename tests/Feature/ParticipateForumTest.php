@@ -11,15 +11,14 @@ class ParticipateForumTest extends TestCase
 
 
    /** @test */
-   public function an_signed_in_user_may_participate_in_thread()
+   public function a_signed_in_user_may_participate_in_thread()
    {
 
-    $this->be(factory('App\User')->create());
-    
-    $thread = factory('App\Thread')->create();
+    $this->signIn();    
+    $thread = create('App\Thread');
 
-    $reply = factory('App\Reply')->create();
-    
+    $reply = create('App\Reply');
+
     $this->post('/threads/'.$thread->id.'/replies', $reply->toArray());
 
     $this->get($thread->path())

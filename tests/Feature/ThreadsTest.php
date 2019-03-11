@@ -20,12 +20,18 @@ class ThreadsTest extends TestCase
         $this->get('/threads')
                 ->assertSee($this->thread->title);
     }
+    /** @test */
+    public function a_thread_can_make_a_string_path()
+    {
+        $thread = create('App\Thread');
 
+        $this->assertEquals('/threads/'.$thread->channel->slug.'/'.$thread->id,$thread->path());
+    }
     /** @test */
     public function a_user_can_browse_single_thread()
     {
 
-        $this->get('/threads/'.$this->thread->id)
+        $this->get('/threads/some-channel/'.$this->thread->id)
             ->assertSee($this->thread->title);
     }
  
@@ -35,9 +41,20 @@ class ThreadsTest extends TestCase
 
        $reply = create('App\Reply',['thread_id'=>$this->thread->id]);
 
-        $this->get('/threads/'.$this->thread->id)
+        $this->get('/threads/some-channel/'.$this->thread->id)
             ->assertSee($reply->body);
 
+    }
+    /** @test */
+
+    public function a_user_can_filter_threads_by_tag()
+    {
+        $channel = create('App\Channel');
+        $threadInChannel = create('App\Thread',['channel_id'=>$channel->id]);
+        $threadNotInChannel = create('App\Thread');
+        $this->get('/threads/'.$channel->slug)
+            ->assertSee($threadInChannel->title)
+            ->assertSee($threadNotInChannel->title);
     }
    
 }

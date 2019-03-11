@@ -10,12 +10,22 @@ class RepliesController extends Controller
     //
     public function __construct()
     {
-        # code...
+        
         $this->middleware('auth');
     }
 
-    public function store(Thread $thread)
+     /**
+     * Display the specified resource.
+     *
+     * @param $channelId
+     * @param  \App\Thread  $thread
+     * @return \Illuminate\Http\Response
+     */
+    public function store($channelId,Thread $thread)
     {
+        $this->validate(request(),[
+            'body' => 'required'
+        ]);
         $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id(),

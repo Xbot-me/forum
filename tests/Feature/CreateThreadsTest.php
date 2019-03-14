@@ -55,8 +55,9 @@ class CreateThreadsTest extends TestCase
     /** @test */
     public function a_thread_requires_a_channal_id()
     {   
+        
         factory('App\Channel',2)->create();
-        $this->pusblishThread(['channel_id'=>2])
+        $this->pusblishThread(['channel_id'=>212])
                 ->assertSessionHasErrors('channel_id');
 
        

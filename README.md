@@ -1,6 +1,8 @@
 # forum
 forum for database project
+
 #Instractions to Set Up
+
 After clonning here's some things you need to do:
 1. .env.example -> .env
 2. set up your database env in .env file.

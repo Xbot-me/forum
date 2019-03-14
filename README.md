@@ -1,5 +1,5 @@
-# forum
-forum for database project
+# Forum
+Forum for database project
 
 # Instractions to Set Up
 -------------------------

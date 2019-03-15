@@ -10,3 +10,14 @@ After clonning here's some things you need to do:
 4. now run **php artisan key:generate** to Generate an app encryption key.
 5. now run **php artisan migrate** to migrate database.
 6. now run **php artisan db:seed** for seeding with faker
+
+#  Instraction to Seed Database with facker
+
+1. Run **php artisan tinker**.
+2.To generate 50 threads associated to relavent user you need to use this command:-
+3.Run **factory('App\Thread', 50)->create();** in cli of laravel tinker.
+4.Now we need to create relavent replies for each threads to do that we this commands.
+5.Run 
+**$threads = factory('App\Thread', 50)->create();
+$threads->each(function($thread){ factory('App\Reply', 10)->create([ 'thread_id' => $thread->id ]); });**
+this with generate 10 replies for each threads where we have 50 threads.

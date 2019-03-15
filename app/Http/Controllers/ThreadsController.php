@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Thread;
 use Illuminate\Http\Request;
 use App\Channel;
+use App\User;
+use App\Filters\ThreadsFilters;
 
 class ThreadsController extends Controller
 {
@@ -12,19 +14,27 @@ class ThreadsController extends Controller
     {
         $this->middleware('auth')->except('index','show');
     }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Channel $channel
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel)
+    public function index(Channel $channel, ThreadsFilters $filters)
     {
         if($channel->exists){
-           // $channelId = Channel::where('slug',$channelSlug)->first()->id;
-            $threads = $channel->threads()->latest()->get();
-        }else{
-            $threads = Thread::latest()->get();
-        }
+            // $channelId = Channel::where('slug',$channelSlug)->first()->id;
+             $threads = $channel->threads()->latest();
+         }else{
+             $threads = Thread::latest();
+         }
+         
+         $threads= $threads->filter($filters)->get();
+
+         
+     
+        //$threads = $this->getThreads($channel);
         return view('threads.index',compact('threads'));
     }
 
@@ -105,4 +115,5 @@ class ThreadsController extends Controller
     {
         //
     }
+   
 }

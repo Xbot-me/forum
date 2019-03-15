@@ -8,7 +8,7 @@ use App\User;
 
 class ThreadsFilters extends Filters
 {
-    protected $filters = ['by'];
+    protected $filters = ['by']; //filters array we can responds to.
   
     protected function by($username)
     {

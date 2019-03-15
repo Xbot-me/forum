@@ -23,18 +23,8 @@ class ThreadsController extends Controller
      */
     public function index(Channel $channel, ThreadsFilters $filters)
     {
-        if($channel->exists){
-            // $channelId = Channel::where('slug',$channelSlug)->first()->id;
-             $threads = $channel->threads()->latest();
-         }else{
-             $threads = Thread::latest();
-         }
-         
-         $threads= $threads->filter($filters)->get();
+        $threads  = $this->getThreads($channel,$filters);
 
-         
-     
-        //$threads = $this->getThreads($channel);
         return view('threads.index',compact('threads'));
     }
 
@@ -114,6 +104,16 @@ class ThreadsController extends Controller
     public function destroy(Thread $thread)
     {
         //
+    }
+    protected function getThreads($channel,$filters)
+    {
+        $threads = Thread::latest()->filter($filters);
+
+        if($channel->exists){
+            $threads->where('channel_id',$channel->id);
+           }
+
+      return  $threads= $threads->get();
     }
    
 }

@@ -11,12 +11,12 @@
                     </h5>
 
                 
-                
+                 
                 <form action="/replies/{{$reply->id}}/favorites" method="post">
                     {{ csrf_field() }}
                     
                     <button type="submit" class="btn btn-default" {{$reply->isFavorited() ? 'disabled':'' }} >
-                        {{$reply->favorites()->count()}} {{str_plural('Favorite',$reply->favorites()->count())}}
+                        {{$reply->favorites_count}} {{str_plural('Favorite',$reply->favorites_count)}}
                     </button>
                 </form>
             </div>

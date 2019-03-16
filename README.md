@@ -1,5 +1,19 @@
-# Forum
+# Forum Deadline:10th April
 Forum for database project
+
+#Features Done:-
+
+1. Threads
+2. Reply to Threads 
+3. Channels
+4. Can filter though Channels and By username Also By Popularity
+5. A user can favorite a Reply.
+6. A user can Log and register and create Threads.
+
+
+#Features Need to be Added:-
+
+
 
 # Instractions to Set Up
 -------------------------

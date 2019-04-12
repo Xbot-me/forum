@@ -8,20 +8,24 @@
                 <div class="card-header">Forum Threads</div>
 
                 <div class="card-body">
-                    @foreach ($threads as $thread)
-                        <article>
-                        <div class="level">
-                            <h4 class="flex">
-                                <a href="{{$thread->path()}}">{{$thread->title}}</a>
-                            </h4> 
-                        <strong><a href="{{$thread->path()}}">{{$thread->replies_count}} {{str_plural('Reply',$thread->replies_count)}}</a></strong>
-                        </div>
-                        <div class="body">
-                                {{$thread->body}}
+                    @forelse ($threads as $thread)
+                    <article>
+                            <div class="level">
+                                <h4 class="flex">
+                                    <a href="{{$thread->path()}}">{{$thread->title}}</a>
+                                </h4> 
+                            <strong><a href="{{$thread->path()}}">{{$thread->replies_count}} {{str_plural('Reply',$thread->replies_count)}}</a></strong>
                             </div>
-                        </article>
-                        <hr>
-                    @endforeach
+                            <div class="body">
+                                    {{$thread->body}}
+                                </div>
+                            </article>
+                            <hr>
+                    @empty
+                        <p> There are no relevent result at this time.</p>
+                    @endforelse
+                       
+                    
 
                     
                 </div>

@@ -22,6 +22,13 @@ class Thread extends Model
             $builder->with('creator');
                     
         }); */
+
+        static::deleting(function($thread)
+        {
+            $thread->replies()->delete();
+        }
+
+        );
     }
     
     public function path()
@@ -39,6 +46,7 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class,'user_id');
     }
+
     public function channel()
     {   
         return  $this->belongsTo(Channel::class);
@@ -48,6 +56,7 @@ class Thread extends Model
     {
         $this->replies()->create($reply);
     } 
+    
     public function scopeFilter($query,$filters)
     {
         return $filters->apply($query);

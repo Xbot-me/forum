@@ -1,7 +1,7 @@
 # Forum Deadline:10th April
 Forum for database project
 
-#Features Done:-
+# Features Done:-
 
 1. Threads
 2. Reply to Threads 
@@ -11,7 +11,7 @@ Forum for database project
 6. A user can Log and register and create Threads.
 
 
-#Features Need to be Added:-
+# Features Need to be Added:-
 
 
 

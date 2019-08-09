@@ -38,7 +38,8 @@ class Thread extends Model
 
     public function replies()
     {
-        return $this->hasMany(Reply::class);
+
+        return $this->hasMany(Reply::class ,'thread_id');
                
     }
 
@@ -56,6 +57,7 @@ class Thread extends Model
     {
         $this->replies()->create($reply);
     } 
+
     
     public function scopeFilter($query,$filters)
     {

@@ -37,8 +37,8 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-    
+    public function create()
+    {
         return view('threads.create');
     }
 
@@ -50,11 +50,18 @@ class ThreadsController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request['file'];
+        if($request->hasfile('file')){
+            return 'asdj';
+        }
         $this->validate($request,[
             'title' => 'required',
             'body' => 'required',
-            'channel_id' => 'required|exists:channels,id'
+            'channel_id' => 'required|exists:channels,id',
+            'file' =>'required'
+
         ]);
+
         $thread = Thread::create([
             'user_id'=> auth()->id(),
             'channel_id' => request('channel_id'),
@@ -62,6 +69,7 @@ class ThreadsController extends Controller
             'body'=> request('body')
         ]);
         return redirect($thread->path());
+        
     }
 
     /**

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use phpDocumentor\Reflection\DocBlock\Tags\Reference\Reference;
 
 class CreateThreadsTable extends Migration
 {
@@ -15,11 +16,11 @@ class CreateThreadsTable extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
             $table->integer('channel_id');
             $table->string('title');
             $table->text('body');
             $table->timestamps();
+            
         });
     }
 

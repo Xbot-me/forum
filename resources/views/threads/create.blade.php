@@ -24,6 +24,7 @@
                     <div class="form-group">
                       <label for="title">Title:</label>
                       <input type="text" name="title" id="title" required class="form-control" value="{{old('title')}}" aria-describedby="helpId">
+                      <input type="file" name="flie" id="file"  class="form-control" value="" aria-describedby="helpId">
                       
                     </div>
                     <div class="form-group">
